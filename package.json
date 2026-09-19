@@ -1,0 +1,11 @@
+{
+  "name": "haqdaar",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Haqdaar — Find government schemes your family is entitled to",
+  "scripts": {
+    "backend": "cd backend && python local_server.py",
+    "frontend": "npm --prefix frontend run dev",
+    "test": "cd backend && python -m pytest tests/ -v"
+  }
+}

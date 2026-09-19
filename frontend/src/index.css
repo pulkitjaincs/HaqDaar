@@ -1,0 +1,50 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@400;600;700&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --color-brand-light: #f7f6f1;
+  --color-brand: #1b5e20;
+  --color-brand-dark: #0d3b13;
+  --color-brand-accent: #ff8f00;
+  --font-sans: 'Noto Sans Devanagari', system-ui, sans-serif;
+}
+
+/* Print CSS for Benefits Pack (P1 spec Section 10.5) */
+@media print {
+  header, footer, button, .no-print {
+    display: none !important;
+  }
+  body {
+    background: white !important;
+    font-size: 12pt;
+  }
+  main {
+    max-width: 100% !important;
+    padding: 0 !important;
+  }
+  details[open] > summary {
+    font-weight: bold;
+  }
+  details:not([open]) {
+    display: none;
+  }
+  .shadow-sm, .shadow-md, .shadow-xl {
+    box-shadow: none !important;
+  }
+}
+
+/* Subtle animation for profile updates */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.animate-in {
+  animation: fadeIn 0.3s ease-out;
+}
+
+body {
+  background-color: var(--color-brand-light);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}

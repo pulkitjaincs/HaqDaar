@@ -1,0 +1,225 @@
+[
+  {
+    "id": "pm-kisan",
+    "scope": "household",
+    "decision_mode": "rules",
+    "category": "agriculture",
+    "name": {"en": "PM-KISAN", "hi": "पीएम-किसान"},
+    "benefit": {"en": "₹6,000 per year in three equal installments", "hi": "तीन समान किस्तों में प्रति वर्ष ₹6,000"},
+    "criteria": [
+      {"field": "occupation", "op": "eq", "value": "farmer", "label": {"en": "Occupation is farmer", "hi": "पेशा किसान है"}},
+      {"field": "hh_owns_agri_land", "op": "eq", "value": true, "label": {"en": "Owns agricultural land", "hi": "कृषि भूमि का मालिक है"}},
+      {"field": "is_income_tax_payer", "op": "eq", "value": false, "label": {"en": "Not an income-tax payer", "hi": "आयकर दाता नहीं है"}},
+      {"field": "is_govt_employee_or_pensioner", "op": "eq", "value": false, "label": {"en": "Not a government employee or pensioner", "hi": "सरकारी कर्मचारी या पेंशनभोगी नहीं है"}}
+    ],
+    "documents": ["aadhaar", "bank_passbook", "land_records"],
+    "steps": {"en": ["Visit PM-KISAN portal or nearest CSC", "Register with Aadhaar and bank details", "Submit land ownership proof"], "hi": ["पीएम-किसान पोर्टल या नजदीकी सीएससी पर जाएं", "आधार और बैंक विवरण के साथ पंजीकरण करें", "भूमि स्वामित्व प्रमाण जमा करें"]},
+    "apply": {"where": {"en": "PM-KISAN portal or CSC", "hi": "पीएम-किसान पोर्टल या सीएससी"}, "url": "https://pmkisan.gov.in/"},
+    "source": {"url": "https://pmkisan.gov.in/", "verified_on": null, "status": "PROVISIONAL"},
+    "hi_reviewed": false
+  },
+  {
+    "id": "apy",
+    "scope": "member",
+    "decision_mode": "rules",
+    "category": "pension",
+    "name": {"en": "Atal Pension Yojana", "hi": "अटल पेंशन योजना"},
+    "benefit": {"en": "Guaranteed monthly pension after age 60; amount depends on your contribution.", "hi": "60 वर्ष की आयु के बाद गारंटीकृत मासिक पेंशन; राशि आपके योगदान पर निर्भर करती है।"},
+    "criteria": [
+      {"field": "age", "op": "gte", "value": 18, "label": {"en": "Age 18 or above", "hi": "आयु 18 या उससे अधिक"}, "near_miss": {"kind": "time", "unit": "years", "max_gap": 3}},
+      {"field": "age", "op": "lte", "value": 40, "label": {"en": "Age 40 or below", "hi": "आयु 40 या उससे कम"}},
+      {"field": "has_bank_account", "op": "eq", "value": true, "label": {"en": "Has a bank account", "hi": "बैंक खाता है"}, "fix": {"en": "Open a zero-balance Jan Dhan / basic savings account", "hi": "एक जन धन / बुनियादी बचत खाता खोलें"}},
+      {"field": "is_income_tax_payer", "op": "eq", "value": false, "label": {"en": "Not an income-tax payer", "hi": "आयकर दाता नहीं है"}}
+    ],
+    "documents": ["aadhaar", "bank_passbook", "mobile_number"],
+    "steps": {"en": ["Visit your bank branch or use net banking", "Choose the pension amount", "Set up auto-debit"], "hi": ["अपनी बैंक शाखा पर जाएं या नेट बैंकिंग का उपयोग करें", "पेंशन राशि चुनें", "ऑटो-डेबिट सेट करें"]},
+    "apply": {"where": {"en": "Your bank branch or net banking", "hi": "आपकी बैंक शाखा या नेट बैंकिंग"}, "url": null},
+    "source": {"url": null, "verified_on": null, "status": "PROVISIONAL"},
+    "hi_reviewed": false
+  },
+  {
+    "id": "pmjjby",
+    "scope": "member",
+    "decision_mode": "rules",
+    "category": "insurance",
+    "name": {"en": "PM Jeevan Jyoti Bima Yojana", "hi": "पीएम जीवन ज्योति बीमा योजना"},
+    "benefit": {"en": "Life insurance cover of ₹2 lakh at ₹436/year premium", "hi": "₹436/वर्ष प्रीमियम पर ₹2 लाख का जीवन बीमा कवर"},
+    "criteria": [
+      {"field": "age", "op": "gte", "value": 18, "label": {"en": "Age 18 or above", "hi": "आयु 18 या उससे अधिक"}, "near_miss": {"kind": "time", "unit": "years", "max_gap": 3}},
+      {"field": "age", "op": "lte", "value": 50, "label": {"en": "Age 50 or below", "hi": "आयु 50 या उससे कम"}},
+      {"field": "has_bank_account", "op": "eq", "value": true, "label": {"en": "Has a bank account", "hi": "बैंक खाता है"}, "fix": {"en": "Open a zero-balance Jan Dhan / basic savings account", "hi": "एक जन धन / बुनियादी बचत खाता खोलें"}}
+    ],
+    "documents": ["aadhaar", "bank_passbook"],
+    "steps": {"en": ["Visit your bank branch", "Fill the PMJJBY form", "Set up auto-debit for annual premium"], "hi": ["अपनी बैंक शाखा पर जाएं", "पीएमजेजेबीवाई फॉर्म भरें", "वार्षिक प्रीमियम के लिए ऑटो-डेबिट सेट करें"]},
+    "apply": {"where": {"en": "Your bank branch", "hi": "आपकी बैंक शाखा"}, "url": null},
+    "source": {"url": null, "verified_on": null, "status": "PROVISIONAL"},
+    "hi_reviewed": false
+  },
+  {
+    "id": "pmsby",
+    "scope": "member",
+    "decision_mode": "rules",
+    "category": "insurance",
+    "name": {"en": "PM Suraksha Bima Yojana", "hi": "पीएम सुरक्षा बीमा योजना"},
+    "benefit": {"en": "Accidental insurance cover of ₹2 lakh at ₹20/year premium", "hi": "₹20/वर्ष प्रीमियम पर ₹2 लाख का दुर्घटना बीमा कवर"},
+    "criteria": [
+      {"field": "age", "op": "gte", "value": 18, "label": {"en": "Age 18 or above", "hi": "आयु 18 या उससे अधिक"}, "near_miss": {"kind": "time", "unit": "years", "max_gap": 3}},
+      {"field": "age", "op": "lte", "value": 70, "label": {"en": "Age 70 or below", "hi": "आयु 70 या उससे कम"}},
+      {"field": "has_bank_account", "op": "eq", "value": true, "label": {"en": "Has a bank account", "hi": "बैंक खाता है"}, "fix": {"en": "Open a zero-balance Jan Dhan / basic savings account", "hi": "एक जन धन / बुनियादी बचत खाता खोलें"}}
+    ],
+    "documents": ["aadhaar", "bank_passbook"],
+    "steps": {"en": ["Visit your bank branch", "Fill the PMSBY form", "Set up auto-debit for annual premium"], "hi": ["अपनी बैंक शाखा पर जाएं", "पीएमएसबीवाई फॉर्म भरें", "वार्षिक प्रीमियम के लिए ऑटो-डेबिट सेट करें"]},
+    "apply": {"where": {"en": "Your bank branch", "hi": "आपकी बैंक शाखा"}, "url": null},
+    "source": {"url": null, "verified_on": null, "status": "PROVISIONAL"},
+    "hi_reviewed": false
+  },
+  {
+    "id": "sukanya-samriddhi",
+    "scope": "member",
+    "decision_mode": "rules",
+    "category": "savings",
+    "name": {"en": "Sukanya Samriddhi Yojana", "hi": "सुकन्या समृद्धि योजना"},
+    "benefit": {"en": "High-interest savings account for girl child; tax-free returns", "hi": "बालिका के लिए उच्च ब्याज बचत खाता; कर-मुक्त रिटर्न"},
+    "criteria": [
+      {"field": "gender", "op": "eq", "value": "female", "label": {"en": "Gender is female", "hi": "लिंग महिला है"}},
+      {"field": "age", "op": "lte", "value": 9, "label": {"en": "Age 9 or below (opened by parent/guardian)", "hi": "आयु 9 या उससे कम (माता-पिता/अभिभावक द्वारा खोला गया)"}}
+    ],
+    "documents": ["aadhaar", "birth_certificate", "parents_id"],
+    "steps": {"en": ["Visit post office or authorized bank", "Submit birth certificate and parent's ID", "Open account with minimum ₹250 deposit"], "hi": ["डाकघर या अधिकृत बैंक पर जाएं", "जन्म प्रमाण पत्र और माता-पिता का आईडी जमा करें", "न्यूनतम ₹250 जमा के साथ खाता खोलें"]},
+    "apply": {"where": {"en": "Post office or authorized bank", "hi": "डाकघर या अधिकृत बैंक"}, "url": null},
+    "source": {"url": null, "verified_on": null, "status": "PROVISIONAL"},
+    "hi_reviewed": false
+  },
+  {
+    "id": "pmuy",
+    "scope": "member",
+    "decision_mode": "rules",
+    "category": "energy",
+    "name": {"en": "Pradhan Mantri Ujjwala Yojana", "hi": "प्रधानमंत्री उज्ज्वला योजना"},
+    "benefit": {"en": "Free LPG connection for women of BPL/AAY families", "hi": "बीपीएल/एएवाई परिवारों की महिलाओं के लिए मुफ्त एलपीजी कनेक्शन"},
+    "criteria": [
+      {"field": "gender", "op": "eq", "value": "female", "label": {"en": "Gender is female", "hi": "लिंग महिला है"}},
+      {"field": "age", "op": "gte", "value": 18, "label": {"en": "Age 18 or above", "hi": "आयु 18 या उससे अधिक"}},
+      {"field": "hh_has_lpg_connection", "op": "eq", "value": false, "label": {"en": "No existing LPG connection in the household", "hi": "परिवार में कोई मौजूदा एलपीजी कनेक्शन नहीं"}},
+      {"field": "hh_ration_card", "op": "in", "value": ["bpl", "aay"], "label": {"en": "Has BPL or AAY ration card", "hi": "बीपीएल या एएवाई राशन कार्ड है"}}
+    ],
+    "documents": ["aadhaar", "bpl_ration_card", "bank_passbook", "passport_photo"],
+    "steps": {"en": ["Fill Ujjwala application form", "Submit to nearest LPG distributor", "Provide Aadhaar and BPL proof"], "hi": ["उज्ज्वला आवेदन पत्र भरें", "नजदीकी एलपीजी वितरक को जमा करें", "आधार और बीपीएल प्रमाण प्रदान करें"]},
+    "apply": {"where": {"en": "Nearest LPG distributor", "hi": "निकटतम एलपीजी वितरक"}, "url": "https://www.pmuy.gov.in/"},
+    "source": {"url": "https://www.pmuy.gov.in/", "verified_on": null, "status": "PROVISIONAL"},
+    "hi_reviewed": false
+  },
+  {
+    "id": "pm-svanidhi",
+    "scope": "member",
+    "decision_mode": "rules",
+    "category": "loan",
+    "name": {"en": "PM SVANidhi", "hi": "पीएम स्वनिधि"},
+    "benefit": {"en": "Working capital loan up to ₹50,000 for street vendors", "hi": "स्ट्रीट वेंडरों के लिए ₹50,000 तक का कार्यशील पूंजी ऋण"},
+    "criteria": [
+      {"field": "occupation", "op": "eq", "value": "street_vendor", "label": {"en": "Occupation is street vendor", "hi": "पेशा स्ट्रीट वेंडर है"}},
+      {"field": "age", "op": "gte", "value": 18, "label": {"en": "Age 18 or above", "hi": "आयु 18 या उससे अधिक"}}
+    ],
+    "documents": ["aadhaar", "vending_certificate_or_id"],
+    "steps": {"en": ["Apply on PM SVANidhi portal or at CSC", "Submit vendor certificate or letter of recommendation", "Loan disbursed to bank account"], "hi": ["पीएम स्वनिधि पोर्टल या सीएससी पर आवेदन करें", "वेंडर प्रमाण पत्र या सिफारिश पत्र जमा करें", "बैंक खाते में ऋण वितरित किया जाएगा"]},
+    "apply": {"where": {"en": "PM SVANidhi portal or CSC", "hi": "पीएम स्वनिधि पोर्टल या सीएससी"}, "url": "https://pmsvanidhi.mohua.gov.in/"},
+    "source": {"url": "https://pmsvanidhi.mohua.gov.in/", "verified_on": null, "status": "PROVISIONAL"},
+    "hi_reviewed": false
+  },
+  {
+    "id": "pm-mudra",
+    "scope": "member",
+    "decision_mode": "rules",
+    "category": "loan",
+    "name": {"en": "PM MUDRA Yojana", "hi": "पीएम मुद्रा योजना"},
+    "benefit": {"en": "Business loans up to ₹10 lakh without collateral", "hi": "बिना गारंटी के ₹10 लाख तक का व्यवसाय ऋण"},
+    "criteria": [
+      {"field": "occupation", "op": "in", "value": ["small_business", "street_vendor", "artisan"], "label": {"en": "Occupation is small business, street vendor, or artisan", "hi": "पेशा लघु व्यवसाय, स्ट्रीट वेंडर, या कारीगर है"}},
+      {"field": "age", "op": "gte", "value": 18, "label": {"en": "Age 18 or above", "hi": "आयु 18 या उससे अधिक"}}
+    ],
+    "documents": ["aadhaar", "bank_passbook", "business_proof"],
+    "steps": {"en": ["Visit any bank, NBFC, or MFI", "Fill the MUDRA loan application", "Submit identity and business proof"], "hi": ["किसी भी बैंक, एनबीएफसी, या एमएफआई पर जाएं", "मुद्रा ऋण आवेदन भरें", "पहचान और व्यवसाय प्रमाण जमा करें"]},
+    "apply": {"where": {"en": "Any bank, NBFC, or MFI", "hi": "कोई भी बैंक, एनबीएफसी, या एमएफआई"}, "url": "https://www.mudra.org.in/"},
+    "source": {"url": "https://www.mudra.org.in/", "verified_on": null, "status": "PROVISIONAL"},
+    "hi_reviewed": false
+  },
+  {
+    "id": "pm-vishwakarma",
+    "scope": "member",
+    "decision_mode": "rules",
+    "category": "skilling",
+    "name": {"en": "PM Vishwakarma", "hi": "पीएम विश्वकर्मा"},
+    "benefit": {"en": "Skill training, toolkit, and loan up to ₹3 lakh for traditional artisans", "hi": "पारंपरिक कारीगरों के लिए कौशल प्रशिक्षण, टूलकिट, और ₹3 लाख तक का ऋण"},
+    "criteria": [
+      {"field": "occupation", "op": "eq", "value": "artisan", "label": {"en": "Occupation is artisan / traditional craftworker", "hi": "पेशा कारीगर / पारंपरिक शिल्पकार है"}},
+      {"field": "age", "op": "gte", "value": 18, "label": {"en": "Age 18 or above", "hi": "आयु 18 या उससे अधिक"}},
+      {"field": "is_govt_employee_or_pensioner", "op": "eq", "value": false, "label": {"en": "Not a government employee or pensioner", "hi": "सरकारी कर्मचारी या पेंशनभोगी नहीं है"}}
+    ],
+    "documents": ["aadhaar", "bank_passbook", "skill_proof"],
+    "steps": {"en": ["Register on PM Vishwakarma portal", "Verify through gram panchayat / ULB", "Receive skill training and toolkit"], "hi": ["पीएम विश्वकर्मा पोर्टल पर पंजीकरण करें", "ग्राम पंचायत / यूएलबी के माध्यम से सत्यापन", "कौशल प्रशिक्षण और टूलकिट प्राप्त करें"]},
+    "apply": {"where": {"en": "PM Vishwakarma portal or CSC", "hi": "पीएम विश्वकर्मा पोर्टल या सीएससी"}, "url": "https://pmvishwakarma.gov.in/"},
+    "source": {"url": "https://pmvishwakarma.gov.in/", "verified_on": null, "status": "PROVISIONAL"},
+    "hi_reviewed": false
+  },
+  {
+    "id": "nsap-old-age-pension",
+    "scope": "member",
+    "decision_mode": "rules",
+    "category": "pension",
+    "name": {"en": "National Old Age Pension (IGNOAPS)", "hi": "राष्ट्रीय वृद्धावस्था पेंशन (IGNOAPS)"},
+    "benefit": {"en": "Monthly pension of ₹200–₹500 for BPL seniors", "hi": "बीपीएल वरिष्ठ नागरिकों के लिए ₹200–₹500 मासिक पेंशन"},
+    "criteria": [
+      {"field": "age", "op": "gte", "value": 60, "label": {"en": "Age 60 or above", "hi": "आयु 60 या उससे अधिक"}, "near_miss": {"kind": "time", "unit": "years", "max_gap": 3}},
+      {"field": "hh_ration_card", "op": "in", "value": ["bpl", "aay"], "label": {"en": "Has BPL or AAY ration card", "hi": "बीपीएल या एएवाई राशन कार्ड है"}}
+    ],
+    "documents": ["aadhaar", "age_proof", "bpl_ration_card", "bank_passbook"],
+    "steps": {"en": ["Apply at gram panchayat or district social welfare office", "Submit age proof and BPL certificate", "Pension credited to bank account monthly"], "hi": ["ग्राम पंचायत या जिला समाज कल्याण कार्यालय में आवेदन करें", "आयु प्रमाण और बीपीएल प्रमाण पत्र जमा करें", "पेंशन मासिक रूप से बैंक खाते में जमा होगी"]},
+    "apply": {"where": {"en": "Gram panchayat or district social welfare office", "hi": "ग्राम पंचायत या जिला समाज कल्याण कार्यालय"}, "url": null},
+    "source": {"url": null, "verified_on": null, "status": "PROVISIONAL"},
+    "hi_reviewed": false
+  },
+  {
+    "id": "ayushman-vay-vandana",
+    "scope": "member",
+    "decision_mode": "rules",
+    "category": "health",
+    "name": {"en": "Ayushman Vay Vandana", "hi": "आयुष्मान वय वंदना"},
+    "benefit": {"en": "Health cover up to ₹5 lakh per year for citizens aged 70+", "hi": "70+ आयु वर्ग के नागरिकों के लिए प्रति वर्ष ₹5 लाख तक का स्वास्थ्य कवर"},
+    "criteria": [
+      {"field": "age", "op": "gte", "value": 70, "label": {"en": "Age 70 or above", "hi": "आयु 70 या उससे अधिक"}, "near_miss": {"kind": "time", "unit": "years", "max_gap": 3}}
+    ],
+    "documents": ["aadhaar"],
+    "steps": {"en": ["Visit PMJAY portal or Ayushman Bharat Health Account app", "Register with Aadhaar", "Download Ayushman card"], "hi": ["पीएमजेएवाई पोर्टल या आयुष्मान भारत हेल्थ अकाउंट ऐप पर जाएं", "आधार के साथ पंजीकरण करें", "आयुष्मान कार्ड डाउनलोड करें"]},
+    "apply": {"where": {"en": "PMJAY portal or nearest hospital", "hi": "पीएमजेएवाई पोर्टल या निकटतम अस्पताल"}, "url": null},
+    "source": {"url": null, "verified_on": null, "status": "PROVISIONAL"},
+    "hi_reviewed": false
+  },
+  {
+    "id": "pmjay-general",
+    "scope": "household",
+    "decision_mode": "informational",
+    "category": "health",
+    "name": {"en": "PM Jan Arogya Yojana (Ayushman Bharat)", "hi": "पीएम जन आरोग्य योजना (आयुष्मान भारत)"},
+    "benefit": {"en": "Health cover of ₹5 lakh per family per year for listed beneficiaries", "hi": "सूचीबद्ध लाभार्थियों के लिए प्रति परिवार प्रति वर्ष ₹5 लाख का स्वास्थ्य कवर"},
+    "criteria": [],
+    "documents": ["aadhaar", "ration_card"],
+    "steps": {"en": ["Check your name on mera.pmjay.gov.in", "Or visit a CSC with Aadhaar and ration card", "Download your e-card if eligible"], "hi": ["mera.pmjay.gov.in पर अपना नाम जांचें", "या आधार और राशन कार्ड के साथ सीएससी पर जाएं", "यदि पात्र हैं तो अपना ई-कार्ड डाउनलोड करें"]},
+    "apply": {"where": {"en": "mera.pmjay.gov.in or nearest CSC", "hi": "mera.pmjay.gov.in या निकटतम सीएससी"}, "url": "https://mera.pmjay.gov.in/"},
+    "source": {"url": "https://pmjay.gov.in/", "verified_on": null, "status": "PROVISIONAL"},
+    "hi_reviewed": false
+  },
+  {
+    "id": "pmay-g",
+    "scope": "household",
+    "decision_mode": "informational",
+    "category": "housing",
+    "name": {"en": "Pradhan Mantri Awas Yojana – Gramin", "hi": "प्रधानमंत्री आवास योजना – ग्रामीण"},
+    "benefit": {"en": "Financial assistance for construction of pucca house in rural areas", "hi": "ग्रामीण क्षेत्रों में पक्के मकान के निर्माण के लिए वित्तीय सहायता"},
+    "criteria": [],
+    "documents": ["aadhaar", "bank_passbook", "land_documents"],
+    "steps": {"en": ["Check eligibility on pmayg.nic.in", "Contact gram panchayat for inclusion in beneficiary list", "Submit documents for verification"], "hi": ["pmayg.nic.in पर पात्रता जांचें", "लाभार्थी सूची में शामिल होने के लिए ग्राम पंचायत से संपर्क करें", "सत्यापन के लिए दस्तावेज जमा करें"]},
+    "apply": {"where": {"en": "Gram panchayat or pmayg.nic.in", "hi": "ग्राम पंचायत या pmayg.nic.in"}, "url": "https://pmayg.nic.in/"},
+    "source": {"url": "https://pmayg.nic.in/", "verified_on": null, "status": "PROVISIONAL"},
+    "hi_reviewed": false
+  }
+]
