@@ -22,14 +22,14 @@ Built for the **WeMakeDevs AWS Hackathon**.
 
 ```mermaid
 graph TD
-    User([📱 User (Voice/Text)]) --> CF[☁️ CloudFront + S3]
-    CF --> API[🚪 API Gateway]
-    API --> Lambda[⚡ AWS Lambda (Python)]
-    Lambda --> Agent[🤖 Agent]
-    Agent <--> Bedrock[🧠 Amazon Bedrock]
-    Agent <--> Engine[⚙️ Eligibility Engine]
-    Engine <--> Catalog[(📜 schemes.json)]
-    Lambda <--> DDB[(💾 DynamoDB Sessions)]
+    User(["📱 User (Voice/Text)"]) --> CF["☁️ CloudFront + S3"]
+    CF --> API["🚪 API Gateway"]
+    API --> Lambda["⚡ AWS Lambda (Python)"]
+    Lambda --> Agent["🤖 Agent"]
+    Agent <--> Bedrock["🧠 Amazon Bedrock"]
+    Agent <--> Engine["⚙️ Eligibility Engine"]
+    Engine <--> Catalog[("📜 schemes.json")]
+    Lambda <--> DDB[("💾 DynamoDB Sessions")]
 ```
 
 ### AWS Services Used
