@@ -1,12 +1,12 @@
 import json
 import os
 import traceback
-from agent import get_agent
+from agent import Agent
 from store import store
 from models import Profile
 from engine.criteria import evaluate_profile
 
-agent = get_agent()
+agent = Agent()
 
 def build_response(status_code, body):
     return {
@@ -54,10 +54,9 @@ def handler(event, context):
             
             return build_response(200, {
                 "session_id": new_session_id,
-                "reply": agent_response["reply"],
-                "profile": agent_response["profile"],
-                "missing_fields": agent_response["missing_fields"],
-                "results": agent_response["results"]
+                "reply": agent_response.get("reply", ""),
+                "profile": agent_response.get("profile", {}),
+                "results": agent_response.get("results", [])
             })
             
         elif path == "/eligibility" and method == "POST":
