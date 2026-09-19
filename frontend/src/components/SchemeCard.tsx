@@ -33,11 +33,11 @@ export default function SchemeCard({ result, scheme, lang, t, openDetail, member
   return (
     <button 
       onClick={() => openDetail(result)} 
-      className={`w-full text-left bg-white p-4 rounded-2xl shadow-sm border ${borderColor} border-l-[6px] transition-all duration-300 hover:shadow-md group relative overflow-hidden`}
+      className={`w-full text-left bg-white p-4 rounded-2xl shadow-sm border ${borderColor} ${borderLeft} transition-all duration-300 hover:shadow-md group relative overflow-hidden`}
     >
       <div className="flex justify-between items-start mb-2">
          <div className="flex items-center gap-1.5 text-[11px] font-bold text-gray-400 uppercase tracking-wider">
-           <span className="bg-gray-100 px-2 py-0.5 rounded-md text-gray-600">
+           <span className={`${badgeClass} px-2 py-0.5 rounded-md`}>
              {t(lang, 'for_member')}: {memberName}{result.via_member ? ` (via ${result.via_member})` : ''}
            </span>
          </div>

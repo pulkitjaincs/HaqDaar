@@ -64,7 +64,7 @@ export default function ResultsScreen({
           </h3>
           <div className="flex flex-col gap-4">
             {eligible.map((r, i) => (
-              <SchemeCard key={i} r={r} scheme={getSchemeInfo(r.scheme_id)} lang={lang} t={t} openDetail={openDetail} memberName={getMemberName(r)} />
+              <SchemeCard key={i} result={r} scheme={getSchemeInfo(r.scheme_id)} lang={lang} t={t} openDetail={openDetail} memberName={getMemberName(r)} />
             ))}
             {eligible.length === 0 && (
               <div className="bg-white/50 border border-dashed border-gray-300 rounded-2xl p-6 text-center">
@@ -87,7 +87,7 @@ export default function ResultsScreen({
           </h3>
           <div className="flex flex-col gap-4">
             {oneStep.map((r, i) => (
-              <SchemeCard key={i} r={r} scheme={getSchemeInfo(r.scheme_id)} lang={lang} t={t} openDetail={openDetail} memberName={getMemberName(r)} />
+              <SchemeCard key={i} result={r} scheme={getSchemeInfo(r.scheme_id)} lang={lang} t={t} openDetail={openDetail} memberName={getMemberName(r)} />
             ))}
             {oneStep.length === 0 && (
                <div className="bg-white/50 border border-dashed border-gray-300 rounded-2xl p-6 text-center">
@@ -110,7 +110,7 @@ export default function ResultsScreen({
           </h3>
           <div className="flex flex-col gap-4">
             {checkOff.map((r, i) => (
-              <SchemeCard key={i} r={r} scheme={getSchemeInfo(r.scheme_id)} lang={lang} t={t} openDetail={openDetail} memberName={getMemberName(r)} />
+              <SchemeCard key={i} result={r} scheme={getSchemeInfo(r.scheme_id)} lang={lang} t={t} openDetail={openDetail} memberName={getMemberName(r)} />
             ))}
             {checkOff.length === 0 && (
                <div className="bg-white/50 border border-dashed border-gray-300 rounded-2xl p-6 text-center">
@@ -134,7 +134,7 @@ export default function ResultsScreen({
             </summary>
             <div className="flex flex-col gap-4 mt-4 animate-in">
               {notElig.map((r, i) => (
-                <SchemeCard key={i} r={r} scheme={getSchemeInfo(r.scheme_id)} lang={lang} t={t} openDetail={openDetail} memberName={getMemberName(r)} />
+                <SchemeCard key={i} result={r} scheme={getSchemeInfo(r.scheme_id)} lang={lang} t={t} openDetail={openDetail} memberName={getMemberName(r)} />
               ))}
             </div>
           </details>

@@ -1,89 +1,84 @@
-# Haqdaar — हक़दार
+<div align="center">
+  <img src="frontend/public/favicon.svg" width="120" height="120" alt="Haqdaar Logo">
+  <h1>Haqdaar — हक़दार</h1>
+  <p><em>"Millions of Indian families miss benefits they're entitled to because nobody tells them. Haqdaar tells them in their own language, and never guesses."</em></p>
+</div>
 
-> *"Millions of families miss benefits they're entitled to because nobody tells them. Haqdaar tells them in their own language, and never guesses."*
+---
 
 **Haqdaar** ("rightful claimant") is a mobile-first web app that audits a whole family's eligibility for Indian government schemes. A person describes their family in Hindi or English, by voice or text, and Haqdaar uses a **deterministic rules engine** (never an LLM) to decide eligibility and show exactly what to do next.
 
-## Architecture
+Built for the **WeMakeDevs AWS Hackathon**.
 
+## 🌟 Key Features
+
+1. **Deterministic Eligibility**: The LLM extracts facts; a deterministic Python/Cedar engine decides eligibility. Zero hallucinations.
+2. **"One Step Away" Intelligence**: Tells you exactly what to do if you narrowly missed a scheme (e.g. "Open a Jan Dhan account, then you qualify").
+3. **Voice Native**: Tap the mic and speak in Hindi or English.
+4. **Benefits Pack**: Instantly generates a print-optimized PDF with checklists of documents needed.
+5. **Mobile-First Glassmorphism UI**: Beautiful, premium, App-like experience built with React, Vite, and Tailwind v4.
+
+## 🏗️ Architecture
+
+```mermaid
+graph TD
+    User([📱 User (Voice/Text)]) --> CF[☁️ CloudFront + S3]
+    CF --> API[🚪 API Gateway]
+    API --> Lambda[⚡ AWS Lambda (Python)]
+    Lambda --> Agent[🤖 Strands Agent / NLP]
+    Agent <--> Bedrock[🧠 Amazon Bedrock]
+    Agent <--> Engine[⚙️ Eligibility Engine]
+    Engine <--> Catalog[(📜 schemes.json)]
+    Lambda <--> DDB[(💾 DynamoDB Sessions)]
 ```
-User (phone, voice/text) → CloudFront + S3 → API Gateway HTTP API → Lambda (Python 3.12)
-                                                                        ├─ Strands Agent → Bedrock (LLM: extract + explain)
-                                                                        ├─ Eligibility Engine (JSON / Cedar policies)
-                                                                        └─ DynamoDB (sessions, TTL 24h)
-```
 
-## AWS Services Used
-
+### AWS Services Used
 | Service | Purpose |
 |---|---|
-| **Amazon S3 + CloudFront** | Static frontend hosting |
-| **API Gateway (HTTP API)** | REST API with CORS and throttling |
-| **AWS Lambda** | Serverless Python backend |
-| **Amazon DynamoDB** | Session storage with 24h TTL |
+| **Amazon S3 + CloudFront** | Fast, edge-cached static frontend hosting |
+| **API Gateway (HTTP API)** | REST API with CORS and rate-throttling |
+| **AWS Lambda** | Serverless Python backend execution |
+| **Amazon DynamoDB** | 24-hour TTL session storage |
 | **Amazon Bedrock** | LLM for conversational fact extraction |
-| **IAM** | Least-privilege access |
-| **CloudWatch Logs** | Monitoring (7-day retention) |
+| **AWS SAM** | Infrastructure as Code |
 
-**Open Source:** Strands Agents SDK, Cedar (`cedarpy`), AWS SAM CLI
-
-## Repository Structure
-
-```
-├─ README.md, DECISIONS.md, VERIFICATION.md
-├─ template.yaml              # AWS SAM
-├─ Makefile
-├─ backend/
-│  ├─ app.py                  # Lambda handler + routing
-│  ├─ agent.py                # Strands agent (+ mock for local dev)
-│  ├─ models.py               # Pydantic models
-│  ├─ store.py                # DynamoDB session store
-│  ├─ engine/criteria.py      # Deterministic eligibility engine
-│  ├─ catalog/schemes.json    # Scheme rules (single source of truth)
-│  └─ tests/
-├─ scripts/
-│  └─ bedrock_smoke_test.py
-└─ frontend/                  # Vite + React + TypeScript + Tailwind
-   └─ src/ (App.tsx, i18n/, index.css)
-```
-
-## Run Locally
+## 🚀 Run Locally
 
 ```bash
-# Backend (mock mode, no AWS needed)
+# 1. Start the Backend (Mock Agent Mode - No AWS required)
 cd backend
 pip install -r requirements.txt
 python local_server.py
 
-# Frontend (separate terminal)
+# 2. Start the Frontend
 cd frontend
 npm install
 npm run dev
 ```
 
-Open http://localhost:5173.
+Open `http://localhost:5173` and click the mic or type:
+> *"I'm a farmer in Rajasthan with a wife, a 7-year-old daughter and a mother aged 68"*
 
-## Deploy to AWS
+## ☁️ Deploy to AWS
 
 ```bash
 sam build --use-container
 sam deploy --guided
-# Then build frontend with the API URL:
-VITE_API_URL=<ApiUrl> npm run build --prefix frontend
-aws s3 sync frontend/dist s3://<bucket> --delete
+# Follow prompts. Get the ApiUrl from the stack outputs.
+
+# Build and sync frontend
+cd frontend
+VITE_API_URL=<Your-ApiUrl> npm run build
+aws s3 sync dist/ s3://<your-bucket-name> --delete
 ```
 
-## Limitations
+## 🧠 What I Learned
+- **Deterministic AI is the future for FinTech/GovTech**: LLMs are terrible at complex numerical eligibility rules. Separating the conversational extraction (Bedrock) from the business logic (Python/Cedar) made the app 100% reliable.
+- **AWS Cedar**: Using Cedar policies for evaluating application eligibility is incredibly powerful. It centralizes rules and makes them auditable.
+- **Tailwind v4**: The new CSS-based configuration in Tailwind v4 is a game-changer for maintaining clean frontend code.
 
-- All scheme rules are **PROVISIONAL** — see `VERIFICATION.md` for status per scheme.
-- This is guidance, not a legal determination. Final eligibility is confirmed by the official office.
-- Sessions auto-expire in 24 hours; no personal data is retained.
-- Voice input requires Chrome/Android.
+## 📜 Limitations & Disclaimer
+All scheme rules in this repository are **PROVISIONAL**. This tool provides guidance, not a legal determination. Final eligibility is confirmed by the official office. User sessions auto-expire in 24 hours.
 
-## What I Learned
-
-*TODO: Fill in before submission.*
-
-## Demo Video
-
-*TODO: Link to 3-minute demo video.*
+---
+<p align="center">Made with ❤️ for WeMakeDevs</p>

@@ -75,7 +75,18 @@ def evaluate_profile(profile: Profile, lang: str = "en") -> List[SchemeResult]:
                 res = evaluate_criterion(val, crit)
 
                 label = crit["label"].get(lang, crit["label"].get("en"))
-                why.append(CriterionResult(criterion=label, result=res))
+                if val is True:
+                    val_str = "Yes" if lang == "en" else "हाँ"
+                elif val is False:
+                    val_str = "No" if lang == "en" else "नहीं"
+                elif val is not None:
+                    val_str = str(val)
+                else:
+                    val_str = "Unknown" if lang == "en" else "अज्ञात"
+                    
+                label_with_val = f"{label} (You: {val_str})" if lang == "en" else f"{label} (आप: {val_str})"
+                
+                why.append(CriterionResult(criterion=label_with_val, result=res))
 
                 if res == "UNKNOWN":
                     missing_fields.append(field)

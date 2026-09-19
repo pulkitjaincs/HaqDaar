@@ -166,3 +166,17 @@ def test_profile_merge_no_overwrite():
     assert m.age == 30  # not overwritten
     assert m.occupation == "farmer"  # not overwritten
     assert m.has_bank_account == True  # new value set
+
+def test_unknown_boolean_is_not_fail():
+    """Spec: A missing boolean field is UNKNOWN (NEEDS_INFO), not False (FAIL)."""
+    profile = Profile(
+        household=Household(),
+        members=[Member(id="m1", relation="self", age=25)] # has_bank_account is None
+    )
+    results = evaluate_profile(profile)
+    rm = {(r.scheme_id, r.member_id): r for r in results}
+    
+    # PMJJBY requires has_bank_account == True. Since it's None, it should be NEEDS_INFO
+    assert rm[("pmjjby", "m1")].status == "NEEDS_INFO"
+    assert "has_bank_account" in rm[("pmjjby", "m1")].missing_fields
+

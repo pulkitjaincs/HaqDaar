@@ -1,0 +1,57 @@
+{
+  "household": {
+    "state": "Rajasthan",
+    "area_type": "rural",
+    "annual_income_inr": 120000,
+    "ration_card": "bpl",
+    "has_pucca_house": false,
+    "has_lpg_connection": false,
+    "owns_agri_land": true
+  },
+  "members": [
+    {
+      "id": "m1",
+      "relation": "self",
+      "name": "Sita",
+      "age": 34,
+      "gender": "female",
+      "occupation": "homemaker",
+      "is_income_tax_payer": false,
+      "has_bank_account": true,
+      "is_govt_employee_or_pensioner": false
+    },
+    {
+      "id": "m2",
+      "relation": "husband",
+      "name": "Ramesh",
+      "age": 38,
+      "gender": "male",
+      "occupation": "farmer",
+      "is_income_tax_payer": false,
+      "has_bank_account": true,
+      "is_govt_employee_or_pensioner": false
+    },
+    {
+      "id": "m3",
+      "relation": "daughter",
+      "name": "Priya",
+      "age": 7,
+      "gender": "female",
+      "occupation": "student",
+      "is_income_tax_payer": false,
+      "has_bank_account": false,
+      "is_govt_employee_or_pensioner": false
+    },
+    {
+      "id": "m4",
+      "relation": "mother-in-law",
+      "name": "MIL",
+      "age": 68,
+      "gender": "female",
+      "occupation": "retired",
+      "is_income_tax_payer": false,
+      "has_bank_account": true,
+      "is_govt_employee_or_pensioner": false
+    }
+  ]
+}
