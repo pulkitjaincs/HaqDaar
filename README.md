@@ -25,7 +25,7 @@ graph TD
     User([📱 User (Voice/Text)]) --> CF[☁️ CloudFront + S3]
     CF --> API[🚪 API Gateway]
     API --> Lambda[⚡ AWS Lambda (Python)]
-    Lambda --> Agent[🤖 Strands Agent / NLP]
+    Lambda --> Agent[🤖 Agent]
     Agent <--> Bedrock[🧠 Amazon Bedrock]
     Agent <--> Engine[⚙️ Eligibility Engine]
     Engine <--> Catalog[(📜 schemes.json)]
@@ -73,8 +73,7 @@ aws s3 sync dist/ s3://<your-bucket-name> --delete
 ```
 
 ## 🧠 What I Learned
-- **Deterministic AI is the future for FinTech/GovTech**: LLMs are terrible at complex numerical eligibility rules. Separating the conversational extraction (Bedrock) from the business logic (Python/Cedar) made the app 100% reliable.
-- **AWS Cedar**: Using Cedar policies for evaluating application eligibility is incredibly powerful. It centralizes rules and makes them auditable.
+- **Deterministic AI is the future for FinTech/GovTech**: LLMs are terrible at complex numerical eligibility rules. Separating the conversational extraction (Bedrock) from the business logic (Python Engine) made the app 100% reliable.
 - **Tailwind v4**: The new CSS-based configuration in Tailwind v4 is a game-changer for maintaining clean frontend code.
 
 ## 📜 Limitations & Disclaimer
